@@ -1,0 +1,121 @@
+{
+  "commands": [
+    {
+      "id": "status",
+      "group": "inspect",
+      "title": "Статус рабочей копии",
+      "synopsis": "git status [-sb]",
+      "danger": "safe",
+      "preview": "status",
+      "git": ["status"],
+      "params": [
+        {
+          "name": "short",
+          "label": "Короткий формат (-sb)",
+          "type": "bool",
+          "flag": "-sb",
+          "default": true
+        }
+      ],
+      "explanation": "## Что делает\n\nПоказывает состояние рабочей директории и индекса относительно `HEAD`.\n\n## Когда использовать\n\nПеред любой изменяющей командой — чтобы понимать картину.\n\n## Риски\n\nНет.\n\n## Связанные команды\n\n`diff`, `log`, `add`"
+    },
+    {
+      "id": "log_oneline",
+      "group": "inspect",
+      "title": "История (one-line)",
+      "synopsis": "git log --oneline -n <n>",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["log", "--oneline"],
+      "params": [
+        {
+          "name": "maxCount",
+          "label": "Число коммитов",
+          "type": "string",
+          "flag": "-n",
+          "default": "20"
+        }
+      ],
+      "explanation": "## Что делает\n\nКраткий лог: хеш и subject.\n\n## Когда использовать\n\nБыстрый обзор истории перед checkout/revert/cherry-pick.\n\n## Риски\n\nНет."
+    },
+    {
+      "id": "log_graph",
+      "group": "inspect",
+      "title": "История с графом",
+      "synopsis": "git log --oneline --graph --decorate -n <n>",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["log", "--oneline", "--graph", "--decorate", "--all"],
+      "params": [
+        {
+          "name": "maxCount",
+          "label": "Число коммитов",
+          "type": "string",
+          "flag": "-n",
+          "default": "30"
+        }
+      ],
+      "explanation": "## Что делает\n\nПоказывает ветвление истории ASCII-графом.\n\n## Когда использовать\n\nЧтобы понять merge/rebase и расхождение веток.\n\n## Риски\n\nНет."
+    },
+    {
+      "id": "diff",
+      "group": "inspect",
+      "title": "Diff (рабочее дерево)",
+      "synopsis": "git diff",
+      "danger": "safe",
+      "preview": "diff",
+      "git": ["diff"],
+      "params": [],
+      "explanation": "## Что делает\n\nUnstaged изменения относительно индекса.\n\n## Когда использовать\n\nПеред `add`, при самопроверке правок.\n\n## Риски\n\nНет."
+    },
+    {
+      "id": "diff_staged",
+      "group": "inspect",
+      "title": "Diff (индекс)",
+      "synopsis": "git diff --staged",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["diff", "--staged"],
+      "params": [],
+      "explanation": "## Что делает\n\nПоказывает, что уже в индексе и войдёт в следующий commit.\n\n## Риски\n\nНет."
+    },
+    {
+      "id": "show_head",
+      "group": "inspect",
+      "title": "Показать коммит",
+      "synopsis": "git show <rev>",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["show"],
+      "params": [
+        {
+          "name": "rev",
+          "label": "Ревизия (HEAD, хеш, ветка)",
+          "type": "string",
+          "flag": "",
+          "default": "HEAD"
+        }
+      ],
+      "explanation": "## Что делает\n\nМетаданные и diff выбранного коммита.\n\n## Риски\n\nНет."
+    },
+    {
+      "id": "blame",
+      "group": "inspect",
+      "title": "Blame файла",
+      "synopsis": "git blame <path>",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["blame"],
+      "params": [
+        {
+          "name": "path",
+          "label": "Путь к файлу",
+          "type": "path",
+          "flag": "",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nДля каждой строки — коммит и автор последнего изменения.\n\n## Риски\n\nНет."
+    }
+  ]
+}

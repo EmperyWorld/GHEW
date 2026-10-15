@@ -1,0 +1,60 @@
+{
+  "commands": [
+    {
+      "id": "tag_list",
+      "group": "tag",
+      "title": "Список тегов",
+      "synopsis": "git tag",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["tag"],
+      "params": [],
+      "explanation": "## Что делает\n\nПоказывает локальные теги."
+    },
+    {
+      "id": "tag_create",
+      "group": "tag",
+      "title": "Создать аннотированный тег",
+      "synopsis": "git tag -a <name> -m <msg>",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["tag", "-a"],
+      "params": [
+        {
+          "name": "name",
+          "label": "Имя тега",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        },
+        {
+          "name": "message",
+          "label": "Сообщение",
+          "type": "string",
+          "flag": "-m",
+          "default": "release"
+        }
+      ],
+      "explanation": "## Что делает\n\nСоздаёт аннотированный тег на HEAD — метка релиза/вехи.\n\n## Риски\n\nНизкие локально; на remote попадёт отдельным push --tags."
+    },
+    {
+      "id": "tag_delete",
+      "group": "tag",
+      "title": "Удалить тег",
+      "synopsis": "git tag -d <name>",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["tag", "-d"],
+      "params": [
+        {
+          "name": "name",
+          "label": "Имя тега",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nУдаляет локальный тег (не remote)."
+    }
+  ]
+}

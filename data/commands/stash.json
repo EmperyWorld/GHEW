@@ -1,0 +1,109 @@
+{
+  "commands": [
+    {
+      "id": "stash_push",
+      "group": "stash",
+      "title": "Stash сохранить",
+      "synopsis": "git stash push -m <msg>",
+      "danger": "mutates",
+      "preview": "stash",
+      "git": ["stash", "push"],
+      "params": [
+        {
+          "name": "message",
+          "label": "Сообщение",
+          "type": "string",
+          "flag": "-m",
+          "default": "wip"
+        },
+        {
+          "name": "includeUntracked",
+          "label": "Включить untracked (-u)",
+          "type": "bool",
+          "flag": "-u",
+          "default": false
+        }
+      ],
+      "explanation": "## Что делает\n\nПрячет локальные изменения в stash и очищает рабочее дерево.\n\n## Риски\n\nЛегко забыть про stash; untracked по умолчанию не всегда входят."
+    },
+    {
+      "id": "stash_list",
+      "group": "stash",
+      "title": "Stash список",
+      "synopsis": "git stash list",
+      "danger": "safe",
+      "preview": "stash",
+      "git": ["stash", "list"],
+      "params": [],
+      "explanation": "## Что делает\n\nПоказывает сохранённые stash-записи."
+    },
+    {
+      "id": "stash_pop",
+      "group": "stash",
+      "title": "Stash pop",
+      "synopsis": "git stash pop",
+      "danger": "mutates",
+      "preview": "stash",
+      "git": ["stash", "pop"],
+      "params": [],
+      "explanation": "## Что делает\n\nПрименяет последний stash и удаляет его из списка.\n\n## Риски\n\nКонфликты; запись stash пропадёт даже при частичном успехе (зависит от версии/флагов)."
+    },
+    {
+      "id": "stash_apply",
+      "group": "stash",
+      "title": "Stash apply",
+      "synopsis": "git stash apply [<stash>]",
+      "danger": "mutates",
+      "preview": "stash",
+      "git": ["stash", "apply"],
+      "params": [
+        {
+          "name": "stash",
+          "label": "Запись (пусто = stash@{0})",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nПрименяет stash, оставляя запись в списке (безопаснее pop для обучения)."
+    },
+    {
+      "id": "stash_drop",
+      "group": "stash",
+      "title": "Stash drop",
+      "synopsis": "git stash drop [<stash>]",
+      "danger": "destructive",
+      "preview": "stash",
+      "git": ["stash", "drop"],
+      "params": [
+        {
+          "name": "stash",
+          "label": "Запись (пусто = stash@{0})",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nУдаляет запись stash без применения.\n\n## Риски\n\nИзменения в этой записи stash будут потеряны."
+    },
+    {
+      "id": "stash_pop_ref",
+      "group": "stash",
+      "title": "Stash pop (запись)",
+      "synopsis": "git stash pop <stash>",
+      "danger": "mutates",
+      "preview": "stash",
+      "git": ["stash", "pop"],
+      "params": [
+        {
+          "name": "stash",
+          "label": "Запись (например stash@{0})",
+          "type": "string",
+          "flag": "",
+          "default": "stash@{0}"
+        }
+      ],
+      "explanation": "## Что делает\n\nПрименяет указанный stash и удаляет его из списка.\n\n## Риски\n\nКонфликты; запись пропадёт из списка."
+    }
+  ]
+}

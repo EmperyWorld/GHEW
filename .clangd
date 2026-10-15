@@ -1,0 +1,21 @@
+CompileFlags:
+  CompilationDatabase: build
+
+# Requires build/compile_commands.json (CMAKE_EXPORT_COMPILE_COMMANDS=ON).
+# If Problems explode with missing Qt types, reconfigure/rebuild then Restart clangd.
+
+# Ignore generated build-tree sources (moc, qmlcache, rcc) — they inflate Problems noise.
+---
+If:
+  PathMatch: .*/build(/.*)?
+Diagnostics:
+  Suppress: "*"
+Index:
+  Background: Skip
+---
+If:
+  PathMatch: .*/build-.*/.*
+Diagnostics:
+  Suppress: "*"
+Index:
+  Background: Skip

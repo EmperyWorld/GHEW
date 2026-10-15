@@ -1,0 +1,144 @@
+{
+  "commands": [
+    {
+      "id": "branch_list",
+      "group": "branch",
+      "title": "Список веток",
+      "synopsis": "git branch -vv",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["branch", "-vv"],
+      "params": [],
+      "explanation": "## Что делает\n\nЛокальные ветки с upstream и последним коммитом.\n\n## Риски\n\nНет."
+    },
+    {
+      "id": "branch_create",
+      "group": "branch",
+      "title": "Создать ветку",
+      "synopsis": "git branch <name>",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["branch"],
+      "params": [
+        {
+          "name": "name",
+          "label": "Имя ветки",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nСоздаёт указатель ветки на текущем HEAD (без переключения).\n\n## Связанные\n\n`switch` / `checkout`"
+    },
+    {
+      "id": "switch",
+      "group": "branch",
+      "title": "Переключить ветку",
+      "synopsis": "git switch <name>",
+      "danger": "mutates",
+      "preview": "branch_switch",
+      "git": ["switch"],
+      "params": [
+        {
+          "name": "name",
+          "label": "Имя ветки",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nПереключает HEAD на другую ветку и обновляет рабочее дерево.\n\n## Риски\n\nМожет отказать при незакоммиченных конфликтах; часть изменений может «переехать»."
+    },
+    {
+      "id": "switch_create",
+      "group": "branch",
+      "title": "Создать и переключить",
+      "synopsis": "git switch -c <name>",
+      "danger": "mutates",
+      "preview": "branch_switch",
+      "git": ["switch", "-c"],
+      "params": [
+        {
+          "name": "name",
+          "label": "Имя новой ветки",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nСоздаёт ветку и сразу на неё переключается."
+    },
+    {
+      "id": "branch_delete",
+      "group": "branch",
+      "title": "Удалить ветку",
+      "synopsis": "git branch -d|-D <name>",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["branch"],
+      "params": [
+        {
+          "name": "mode",
+          "label": "Режим",
+          "type": "choice",
+          "flag": "",
+          "default": "-d",
+          "options": ["-d", "-D"]
+        },
+        {
+          "name": "name",
+          "label": "Имя ветки",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nУдаляет локальную ветку. `-d` откажется, если ветка не смержена; `-D` удалит принудительно.\n\n## Риски\n\nМожно потерять коммиты, на которые больше никто не ссылается (пока есть reflog — ещё можно спасти)."
+    },
+    {
+      "id": "branch_set_upstream",
+      "group": "branch",
+      "title": "Настроить upstream",
+      "synopsis": "git branch --set-upstream-to=<upstream> [<branch>]",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["branch", "--set-upstream-to"],
+      "params": [
+        {
+          "name": "upstream",
+          "label": "Upstream (например origin/main)",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        },
+        {
+          "name": "branch",
+          "label": "Локальная ветка (пусто = текущая)",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nПривязывает локальную ветку к remote-tracking ветке (ahead/behind, pull/push без аргументов).\n\n## Риски\n\nНизкие: меняет только конфигурацию tracking."
+    },
+    {
+      "id": "branch_unset_upstream",
+      "group": "branch",
+      "title": "Сбросить upstream",
+      "synopsis": "git branch --unset-upstream [<branch>]",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["branch", "--unset-upstream"],
+      "params": [
+        {
+          "name": "branch",
+          "label": "Ветка (пусто = текущая)",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nУбирает привязку к upstream у локальной ветки."
+    }
+  ]
+}

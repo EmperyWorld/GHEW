@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+Name=GHEW
+Name[ru]=GHEW
+GenericName=Git Hub Empery World
+GenericName[ru]=Git Hub Empery World
+Comment=Git workspace by EmperyWorld — commands with explanations and safe previews
+Comment[ru]=Рабочее место Git от EmperyWorld — команды с пояснениями и превью
+Exec=ghew %F
+Icon=ghew
+Terminal=false
+Categories=Development;RevisionControl;Education;
+MimeType=inode/directory;
+Keywords=git;vcs;ghew;emperyworld;kde;kirigami;
+StartupNotify=true
+StartupWMClass=ghew

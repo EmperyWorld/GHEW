@@ -1,0 +1,42 @@
+{
+  "commands": [
+    {
+      "id": "commit",
+      "group": "commit",
+      "title": "Создать коммит",
+      "synopsis": "git commit -m <message>",
+      "danger": "mutates",
+      "preview": "commit",
+      "git": ["commit"],
+      "params": [
+        {
+          "name": "message",
+          "label": "Сообщение коммита",
+          "type": "text",
+          "flag": "-m",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nСоздаёт коммит из текущего индекса с указанным сообщением.\n\n## Когда использовать\n\nПосле `add`, когда набор изменений готов.\n\n## Риски\n\nПопадает в историю ветки; на shared remote потом может понадобиться revert, а не rewrite."
+    },
+    {
+      "id": "commit_amend",
+      "group": "commit",
+      "title": "Amend последнего коммита",
+      "synopsis": "git commit --amend -m <message>",
+      "danger": "destructive",
+      "preview": "commit",
+      "git": ["commit", "--amend"],
+      "params": [
+        {
+          "name": "message",
+          "label": "Новое сообщение (пусто = оставить)",
+          "type": "text",
+          "flag": "-m",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nПереписывает последний коммит (содержимое и/или сообщение).\n\n## Риски\n\n**Переписывает историю.** Не делайте amend для коммитов, которые уже запушены в shared ветку (без force-push и согласия команды)."
+    }
+  ]
+}

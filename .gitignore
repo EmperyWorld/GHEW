@@ -1,0 +1,38 @@
+# Build trees
+/build/
+/build-*/
+/cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+CMakeUserPresets.json
+compile_commands.json
+
+# Packaged binaries and AppImage staging (large, reproducible)
+/packaging/out/
+*.AppImage
+*.rpm
+*.src.rpm
+
+# Qt language server writes machine paths into the source root
+.qmlls.ini
+
+# Tool caches
+.cache/
+.idea/
+.directory
+*.user
+*~
+*.swp
+*.swo
+
+# Stray compiler output outside the build tree
+*.o
+*.obj
+*.a
+__pycache__/
+*.pyc
+
+# Crash dumps in the repo root, not the src/core sources
+/core
+/core.*
+/vgcore.*

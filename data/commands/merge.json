@@ -1,0 +1,175 @@
+{
+  "commands": [
+    {
+      "id": "merge",
+      "group": "merge",
+      "title": "Merge ветки",
+      "synopsis": "git merge <branch>",
+      "danger": "mutates",
+      "preview": "merge",
+      "git": ["merge"],
+      "params": [
+        {
+          "name": "branch",
+          "label": "Ветка-источник",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nВливает историю указанной ветки в текущую.\n\n## Риски\n\nКонфликты; появляется merge-коммит (если не fast-forward)."
+    },
+    {
+      "id": "rebase",
+      "group": "merge",
+      "title": "Rebase на ветку",
+      "synopsis": "git rebase <onto>",
+      "danger": "destructive",
+      "preview": "merge",
+      "git": ["rebase"],
+      "params": [
+        {
+          "name": "onto",
+          "label": "База (например main)",
+          "type": "string",
+          "flag": "",
+          "default": "main"
+        }
+      ],
+      "explanation": "## Что делает\n\nПереносит ваши коммиты поверх другой базы, переписывая хеши.\n\n## Риски\n\n**Переписывает историю.** Не rebase'ьте уже запушенные shared-ветки без договорённости."
+    },
+    {
+      "id": "rebase_continue",
+      "group": "merge",
+      "title": "Rebase --continue",
+      "synopsis": "git rebase --continue",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["rebase", "--continue"],
+      "params": [],
+      "explanation": "## Что делает\n\nПродолжает rebase после разрешения конфликтов."
+    },
+    {
+      "id": "rebase_abort",
+      "group": "merge",
+      "title": "Rebase --abort",
+      "synopsis": "git rebase --abort",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["rebase", "--abort"],
+      "params": [],
+      "explanation": "## Что делает\n\nОтменяет незавершённый rebase и возвращает ветку к состоянию до начала."
+    },
+    {
+      "id": "cherry_pick",
+      "group": "merge",
+      "title": "Cherry-pick",
+      "synopsis": "git cherry-pick <commit>",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["cherry-pick"],
+      "params": [
+        {
+          "name": "commit",
+          "label": "Хеш / ссылка коммита",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nПрименяет изменения одного коммита поверх текущей ветки новым коммитом.\n\n## Риски\n\nКонфликты; дублирование изменений при неосторожном использовании."
+    },
+    {
+      "id": "cherry_pick_continue",
+      "group": "merge",
+      "title": "Cherry-pick --continue",
+      "synopsis": "git cherry-pick --continue",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["cherry-pick", "--continue"],
+      "params": [],
+      "explanation": "## Что делает\n\nПродолжает cherry-pick после разрешения конфликтов."
+    },
+    {
+      "id": "cherry_pick_abort",
+      "group": "merge",
+      "title": "Cherry-pick --abort",
+      "synopsis": "git cherry-pick --abort",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["cherry-pick", "--abort"],
+      "params": [],
+      "explanation": "## Что делает\n\nОтменяет незавершённый cherry-pick и возвращает дерево к состоянию до начала."
+    },
+    {
+      "id": "revert_continue",
+      "group": "merge",
+      "title": "Revert --continue",
+      "synopsis": "git revert --continue",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["revert", "--continue"],
+      "params": [],
+      "explanation": "## Что делает\n\nПродолжает revert после разрешения конфликтов."
+    },
+    {
+      "id": "revert_abort",
+      "group": "merge",
+      "title": "Revert --abort",
+      "synopsis": "git revert --abort",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["revert", "--abort"],
+      "params": [],
+      "explanation": "## Что делает\n\nОтменяет незавершённый revert."
+    },
+    {
+      "id": "merge_abort",
+      "group": "merge",
+      "title": "Merge --abort",
+      "synopsis": "git merge --abort",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["merge", "--abort"],
+      "params": [],
+      "explanation": "## Что делает\n\nОтменяет незавершённый merge и возвращает дерево к состоянию до merge.\n\n## Риски\n\nПотеря незакоммиченных правок, сделанных во время разрешения конфликтов."
+    },
+    {
+      "id": "merge_continue",
+      "group": "merge",
+      "title": "Merge --continue",
+      "synopsis": "git merge --continue",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["merge", "--continue"],
+      "params": [],
+      "explanation": "## Что делает\n\nЗавершает merge после того, как конфликты разрешены и файлы добавлены в индекс."
+    },
+    {
+      "id": "checkout_ours",
+      "group": "merge",
+      "title": "Checkout --ours (конфликт)",
+      "synopsis": "git checkout --ours -- <path>",
+      "danger": "destructive",
+      "preview": "generic",
+      "git": ["checkout", "--ours", "--"],
+      "params": [
+        { "name": "path", "label": "Конфликтный файл", "type": "path", "flag": "", "default": "" }
+      ],
+      "explanation": "## Что делает\n\nВ конфликте оставляет версию текущей ветки (ours).\n\n## Риски\n\nТеряется версия вливаемой ветки для этого файла — проверьте diff."
+    },
+    {
+      "id": "checkout_theirs",
+      "group": "merge",
+      "title": "Checkout --theirs (конфликт)",
+      "synopsis": "git checkout --theirs -- <path>",
+      "danger": "destructive",
+      "preview": "generic",
+      "git": ["checkout", "--theirs", "--"],
+      "params": [
+        { "name": "path", "label": "Конфликтный файл", "type": "path", "flag": "", "default": "" }
+      ],
+      "explanation": "## Что делает\n\nВ конфликте оставляет версию вливаемой ветки (theirs).\n\n## Риски\n\nТеряется версия текущей ветки для этого файла."
+    }
+  ]
+}

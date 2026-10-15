@@ -1,0 +1,28 @@
+{
+  "qml-ls.importPaths": [
+    "${workspaceFolder}/build",
+    "${workspaceFolder}/build/GitLab",
+    "/usr/lib64/qt6/qml"
+  ],
+  "qml.qmlls.customArgs": [
+    "--build-dir",
+    "${workspaceFolder}/build",
+    "-I",
+    "${workspaceFolder}/build",
+    "-I",
+    "${workspaceFolder}/build/GitLab",
+    "-I",
+    "/usr/lib64/qt6/qml",
+    "--no-cmake-calls"
+  ],
+  "clangd.arguments": [
+    "--compile-commands-dir=${workspaceFolder}/build",
+    "--header-insertion=never"
+  ],
+  "files.watcherExclude": {
+    "**/build/**": true
+  },
+  "search.exclude": {
+    "**/build/**": true
+  }
+}

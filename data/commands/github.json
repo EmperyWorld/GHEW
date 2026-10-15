@@ -1,0 +1,243 @@
+{
+  "commands": [
+    {
+      "id": "github_view",
+      "group": "github",
+      "runner": "gh",
+      "title": "Карточка GitHub",
+      "synopsis": "gh repo view",
+      "danger": "safe",
+      "preview": "generic",
+      "gh": ["repo", "view"],
+      "params": [],
+      "explanation": "## Что делает\n\nПоказывает карточку репозитория на GitHub через `gh` (описание, URL, видимость).\n\n## Риски\n\nНет. Нужен вход `gh auth login` и origin на github.com."
+    },
+    {
+      "id": "github_create",
+      "group": "github",
+      "runner": "gh",
+      "title": "Создать репозиторий на GitHub",
+      "synopsis": "gh repo create --source=. --remote=origin --push",
+      "danger": "mutates",
+      "preview": "generic",
+      "gh": ["repo", "create"],
+      "params": [
+        {
+          "name": "name",
+          "label": "Имя репозитория",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "label": "Описание",
+          "type": "text",
+          "flag": "--description",
+          "optional": true
+        },
+        {
+          "name": "homepage",
+          "label": "Сайт",
+          "type": "string",
+          "flag": "--homepage",
+          "optional": true
+        },
+        {
+          "name": "private",
+          "label": "Приватный (--private)",
+          "type": "bool",
+          "flag": "--private",
+          "default": true
+        },
+        {
+          "name": "public",
+          "label": "Публичный (--public)",
+          "type": "bool",
+          "flag": "--public",
+          "default": false
+        },
+        {
+          "name": "source",
+          "label": "Локальный каталог (--source)",
+          "type": "string",
+          "flag": "--source",
+          "default": "."
+        },
+        {
+          "name": "remote",
+          "label": "Имя remote",
+          "type": "string",
+          "flag": "--remote",
+          "default": "origin"
+        },
+        {
+          "name": "push",
+          "label": "Сразу отправить коммиты (--push)",
+          "type": "bool",
+          "flag": "--push",
+          "default": true
+        }
+      ],
+      "explanation": "## Что делает\n\nСоздаёт репозиторий в аккаунте текущего `gh`, ставит `origin` и по умолчанию пушит локальные коммиты. По умолчанию репозиторий **приватный**.\n\n## Риски\n\nКод уходит на github.com. Публичный режим включайте только осознанно. Если `origin` уже есть, команда не запускается."
+    },
+    {
+      "id": "github_describe",
+      "group": "github",
+      "runner": "gh",
+      "title": "Описание и сайт",
+      "synopsis": "gh repo edit --description",
+      "danger": "mutates",
+      "preview": "generic",
+      "gh": ["repo", "edit"],
+      "params": [
+        {
+          "name": "description",
+          "label": "Описание",
+          "type": "text",
+          "flag": "--description",
+          "optional": true,
+          "keepEmpty": true
+        },
+        {
+          "name": "homepage",
+          "label": "Сайт",
+          "type": "string",
+          "flag": "--homepage",
+          "optional": true,
+          "keepEmpty": true
+        }
+      ],
+      "explanation": "## Что делает\n\nЗаписывает описание и адрес сайта у уже существующего репозитория на GitHub.\n\n## Риски\n\nМеняет публичную карточку репозитория. Нужен origin на github.com."
+    },
+    {
+      "id": "github_topic",
+      "group": "github",
+      "runner": "gh",
+      "title": "Добавить тему",
+      "synopsis": "gh repo edit --add-topic",
+      "danger": "mutates",
+      "preview": "generic",
+      "gh": ["repo", "edit"],
+      "params": [
+        {
+          "name": "topic",
+          "label": "Тема",
+          "type": "string",
+          "flag": "--add-topic"
+        }
+      ],
+      "explanation": "## Что делает\n\nДобавляет тему (topic) репозиторию на GitHub.\n\n## Риски\n\nТема видна на странице репозитория. Повтор той же темы обычно безвреден."
+    },
+    {
+      "id": "github_topic_remove",
+      "group": "github",
+      "runner": "gh",
+      "title": "Убрать тему",
+      "synopsis": "gh repo edit --remove-topic",
+      "danger": "mutates",
+      "preview": "generic",
+      "gh": ["repo", "edit"],
+      "params": [
+        {
+          "name": "topic",
+          "label": "Тема",
+          "type": "string",
+          "flag": "--remove-topic"
+        }
+      ],
+      "explanation": "## Что делает\n\nСнимает тему с карточки репозитория на GitHub.\n\n## Риски\n\nТема пропадает со страницы. Код и коммиты не трогает."
+    },
+    {
+      "id": "github_visibility",
+      "group": "github",
+      "runner": "gh",
+      "title": "Видимость репозитория",
+      "synopsis": "gh repo edit --visibility",
+      "danger": "mutates",
+      "preview": "generic",
+      "gh": ["repo", "edit", "--accept-visibility-change-consequences"],
+      "params": [
+        {
+          "name": "visibility",
+          "label": "Видимость",
+          "type": "choice",
+          "flag": "--visibility",
+          "options": ["private", "public", "internal"]
+        }
+      ],
+      "explanation": "## Что делает\n\nМеняет видимость репозитория: private, public или internal.\n\n## Риски\n\nПубличный режим открывает код всем. Смена видимости может отцепить форки и звёзды. Подтверждение последствий уже стоит в команде."
+    },
+    {
+      "id": "github_rename",
+      "group": "github",
+      "runner": "gh",
+      "title": "Переименовать репозиторий",
+      "synopsis": "gh repo rename --yes",
+      "danger": "mutates",
+      "preview": "generic",
+      "gh": ["repo", "rename", "--yes"],
+      "params": [
+        {
+          "name": "name",
+          "label": "Новое имя",
+          "type": "string"
+        }
+      ],
+      "explanation": "## Что делает\n\nМеняет имя репозитория на GitHub. Владелец остаётся тем же. `gh` обновляет origin.\n\n## Риски\n\nСтарый URL перестаёт быть основным. Перенос в другую организацию здесь не делается."
+    },
+    {
+      "id": "github_push",
+      "group": "github",
+      "title": "Опубликовать текущую ветку",
+      "synopsis": "git push -u origin HEAD",
+      "danger": "mutates",
+      "preview": "push",
+      "git": ["push", "-u", "origin", "HEAD"],
+      "params": [],
+      "explanation": "## Что делает\n\nОтправляет текущую ветку в `origin` и ставит upstream (`-u`).\n\n## Риски\n\nНужен уже созданный remote. Это обычный push, не force."
+    },
+    {
+      "id": "github_readme",
+      "group": "github",
+      "runner": "file",
+      "title": "Создать README",
+      "synopsis": "README.md",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["write", "README.md"],
+      "params": [
+        {
+          "name": "title",
+          "label": "Заголовок",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "blurb",
+          "label": "Короткое описание",
+          "type": "text",
+          "optional": true
+        }
+      ],
+      "explanation": "## Что делает\n\nСоздаёт `README.md`, если файла README ещё нет. Существующий README не трогает. Дальше файл нужно добавить в индекс и закоммитить.\n\n## Риски\n\nПоявляется неотслеживаемый файл. История не меняется, пока вы сами не сделаете commit."
+    },
+    {
+      "id": "github_license",
+      "group": "github",
+      "runner": "file",
+      "title": "Создать LICENSE",
+      "synopsis": "LICENSE (mit | bsd2 | proprietary)",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["write", "LICENSE"],
+      "params": [
+        {
+          "name": "kind",
+          "label": "Вид",
+          "type": "choice",
+          "options": ["mit", "bsd2", "proprietary"]
+        }
+      ],
+      "explanation": "## Что делает\n\nПишет `LICENSE`, если файла лицензии ещё нет. `mit` и `bsd2` — стандартные тексты. `proprietary` — короткий запрет без отдельного разрешения. Год и имя берутся из даты и локального `user.name`.\n\n## Риски\n\nЛицензия — юридический выбор. Существующий файл не перезаписывается. После записи нужен commit."
+    }
+  ]
+}

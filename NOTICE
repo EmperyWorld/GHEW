@@ -1,0 +1,13 @@
+GHEW · Empery World
+SPDX-License-Identifier: MIT
+
+This project is licensed under MIT. The existing copyright holder notice is
+preserved in LICENSE. Preserve that notice and the permission text when
+redistributing copies or substantial portions of the software.
+
+Qt, KDE/Kirigami and other dependencies retain their upstream licenses.
+The root MIT grant does not relicense third-party components.
+Previously distributed versions retain their delivered license terms.
+
+The public source snapshot excludes local agent configuration, credentials,
+build outputs and GitHub Actions workflow files.

@@ -1,0 +1,111 @@
+{
+  "commands": [
+    {
+      "id": "remote_v",
+      "group": "remote",
+      "title": "Список remote",
+      "synopsis": "git remote -v",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["remote", "-v"],
+      "params": [],
+      "explanation": "## Что делает\n\nПоказывает настроенные remote и URL.\n\n## Риски\n\nНет."
+    },
+    {
+      "id": "fetch",
+      "group": "remote",
+      "title": "Fetch",
+      "synopsis": "git fetch [--all]",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["fetch"],
+      "params": [
+        {
+          "name": "all",
+          "label": "Все remote (--all)",
+          "type": "bool",
+          "flag": "--all",
+          "default": true
+        }
+      ],
+      "explanation": "## Что делает\n\nЗабирает объекты с remote без слияния в текущую ветку.\n\n## Риски\n\nНизкие: локальная ветка не двигается."
+    },
+    {
+      "id": "pull",
+      "group": "remote",
+      "title": "Pull",
+      "synopsis": "git pull",
+      "danger": "mutates",
+      "preview": "merge",
+      "git": ["pull"],
+      "params": [],
+      "explanation": "## Что делает\n\nFetch + merge/rebase в текущую ветку (зависит от конфигурации).\n\n## Риски\n\nВозможны конфликты merge; история локальной ветки изменится."
+    },
+    {
+      "id": "pull_rebase",
+      "group": "remote",
+      "title": "Pull --rebase",
+      "synopsis": "git pull --rebase",
+      "danger": "mutates",
+      "preview": "merge",
+      "git": ["pull", "--rebase"],
+      "params": [],
+      "explanation": "## Что делает\n\nПодтягивает upstream и перекладывает ваши локальные коммиты поверх (rebase вместо merge).\n\n## Риски\n\nКонфликты rebase; переписывает локальные коммиты, которых ещё нет на remote. Предпочтительнее merge-pull для линейной истории feature-ветки."
+    },
+    {
+      "id": "fetch_prune",
+      "group": "remote",
+      "title": "Fetch --prune",
+      "synopsis": "git fetch --all --prune",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["fetch", "--all", "--prune"],
+      "params": [],
+      "explanation": "## Что делает\n\nFetch со всех remote и удаляет устаревшие remote-tracking ветки (`--prune`).\n\n## Риски\n\nНизкие: локальные ветки не трогает, только ссылки origin/*."
+    },
+    {
+      "id": "push",
+      "group": "remote",
+      "title": "Push",
+      "synopsis": "git push",
+      "danger": "mutates",
+      "preview": "push",
+      "git": ["push"],
+      "params": [
+        {
+          "name": "setUpstream",
+          "label": "Установить upstream (-u)",
+          "type": "bool",
+          "flag": "-u",
+          "default": false
+        },
+        {
+          "name": "remote",
+          "label": "Remote (пусто = default)",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        },
+        {
+          "name": "branch",
+          "label": "Ветка (пусто = current)",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nОтправляет локальные коммиты на remote.\n\n## Риски\n\nПубликует историю; force-push здесь намеренно не вынесен в отдельную кнопку без осторожности."
+    },
+    {
+      "id": "push_force_with_lease",
+      "group": "remote",
+      "title": "Push --force-with-lease",
+      "synopsis": "git push --force-with-lease",
+      "danger": "destructive",
+      "preview": "push",
+      "git": ["push", "--force-with-lease"],
+      "params": [],
+      "explanation": "## Что делает\n\nПринудительно обновляет remote-ветку, но только если remote не уехал вперёд незаметно для вас.\n\n## Риски\n\n**Переписывает опубликованную историю.** Используйте только на своих feature-ветках и с пониманием последствий."
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "commands": [
+    {
+      "id": "shortlog",
+      "group": "inspect",
+      "title": "Shortlog",
+      "synopsis": "git shortlog -sn -n 20",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["shortlog", "-sn", "-n", "20"],
+      "params": [],
+      "explanation": "## Что делает\n\nСводка коммитов по авторам."
+    },
+    {
+      "id": "describe",
+      "group": "inspect",
+      "title": "Describe",
+      "synopsis": "git describe --tags --always",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["describe", "--tags", "--always"],
+      "params": [],
+      "explanation": "## Что делает\n\nЧеловекочитаемая метка текущего коммита относительно тегов."
+    },
+    {
+      "id": "show_ref",
+      "group": "inspect",
+      "title": "Show-ref",
+      "synopsis": "git show-ref --heads --tags",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["show-ref", "--heads", "--tags"],
+      "params": [],
+      "explanation": "## Что делает\n\nСписок локальных ссылок heads/tags с SHA."
+    },
+    {
+      "id": "ls_files",
+      "group": "inspect",
+      "title": "Ls-files (tracked)",
+      "synopsis": "git ls-files",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["ls-files"],
+      "params": [],
+      "explanation": "## Что делает\n\nСписок отслеживаемых файлов в индексе."
+    },
+    {
+      "id": "worktree_add",
+      "group": "advanced",
+      "title": "Worktree add",
+      "synopsis": "git worktree add <path> <branch>",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["worktree", "add"],
+      "params": [
+        { "name": "path", "label": "Путь нового дерева", "type": "path", "flag": "", "default": "" },
+        { "name": "branch", "label": "Ветка", "type": "string", "flag": "", "default": "" }
+      ],
+      "explanation": "## Что делает\n\nСоздаёт связанное рабочее дерево на указанной ветке."
+    },
+    {
+      "id": "bisect_bad",
+      "group": "advanced",
+      "title": "Bisect bad",
+      "synopsis": "git bisect bad",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["bisect", "bad"],
+      "params": [],
+      "explanation": "## Что делает\n\nПомечает текущий коммит как «плохой» в bisect."
+    },
+    {
+      "id": "bisect_good",
+      "group": "advanced",
+      "title": "Bisect good",
+      "synopsis": "git bisect good",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["bisect", "good"],
+      "params": [],
+      "explanation": "## Что делает\n\nПомечает текущий коммит как «хороший» в bisect."
+    },
+    {
+      "id": "stash_show",
+      "group": "stash",
+      "title": "Stash show",
+      "synopsis": "git stash show -p",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["stash", "show", "-p"],
+      "params": [],
+      "explanation": "## Что делает\n\nПоказывает patch верхнего stash."
+    },
+    {
+      "id": "diff_word",
+      "group": "inspect",
+      "title": "Diff --word-diff",
+      "synopsis": "git diff --word-diff",
+      "danger": "safe",
+      "preview": "diff",
+      "git": ["diff", "--word-diff"],
+      "params": [],
+      "explanation": "## Что делает\n\nПострочный word-diff незакоммиченных изменений."
+    },
+    {
+      "id": "rev_list_upstream",
+      "group": "remote",
+      "title": "Сравнение с upstream",
+      "synopsis": "git rev-list --left-right --count HEAD...@{u}",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["rev-list", "--left-right", "--count", "HEAD...@{u}"],
+      "params": [],
+      "explanation": "## Что делает\n\nСчитает коммиты только локально / только на upstream (ahead/behind)."
+    },
+    {
+      "id": "commit_empty",
+      "group": "commit",
+      "title": "Пустой коммит",
+      "synopsis": "git commit --allow-empty -m <message>",
+      "danger": "mutates",
+      "preview": "commit",
+      "git": ["commit", "--allow-empty"],
+      "params": [
+        { "name": "message", "label": "Сообщение", "type": "text", "flag": "-m", "default": "chore: empty marker" }
+      ],
+      "explanation": "## Что делает\n\nСоздаёт коммит без изменений файлов (маркер/CI)."
+    },
+    {
+      "id": "tag_annotated",
+      "group": "tag",
+      "title": "Annotated tag",
+      "synopsis": "git tag -a <name> -m <message>",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["tag", "-a"],
+      "params": [
+        { "name": "name", "label": "Имя тега", "type": "string", "flag": "", "default": "" },
+        { "name": "message", "label": "Сообщение", "type": "text", "flag": "-m", "default": "" }
+      ],
+      "explanation": "## Что делает\n\nСоздаёт аннотированный тег с сообщением."
+    },
+    {
+      "id": "blame_file",
+      "group": "inspect",
+      "title": "Blame (команда)",
+      "synopsis": "git blame <path>",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["blame"],
+      "params": [
+        { "name": "path", "label": "Файл", "type": "path", "flag": "", "default": "" }
+      ],
+      "explanation": "## Что делает\n\nПострочная аннотация автора для файла (через каталог команд)."
+    },
+    {
+      "id": "diff_stat",
+      "group": "inspect",
+      "title": "Diff --stat",
+      "synopsis": "git diff --stat",
+      "danger": "safe",
+      "preview": "diff",
+      "git": ["diff", "--stat"],
+      "params": [],
+      "explanation": "## Что делает\n\nКраткая статистика незакоммиченных изменений."
+    },
+    {
+      "id": "remote_show",
+      "group": "remote",
+      "title": "Remote show origin",
+      "synopsis": "git remote show origin",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["remote", "show", "origin"],
+      "params": [],
+      "explanation": "## Что делает\n\nПодробности о remote origin (ветки, tracking)."
+    },
+    {
+      "id": "branch_rename",
+      "group": "branch",
+      "title": "Переименовать ветку",
+      "synopsis": "git branch -m [<old>] <new>",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["branch", "-m"],
+      "params": [
+        {
+          "name": "old",
+          "label": "Старое имя (пусто = текущая)",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        },
+        {
+          "name": "name",
+          "label": "Новое имя",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nПереименовывает ветку. Без «старого» имени — текущую; с обоими — указанную локальную ветку."
+    },
+    {
+      "id": "repo_init",
+      "group": "advanced",
+      "title": "Init репозитория",
+      "synopsis": "git init -b <branch>",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["init", "-b"],
+      "params": [
+        {
+          "name": "branch",
+          "label": "Начальная ветка",
+          "type": "string",
+          "flag": "",
+          "default": "main"
+        }
+      ],
+      "explanation": "## Что делает\n\nИнициализирует git в текущем каталоге (если открыт) или используйте кнопку «Создать репозиторий» на Welcome — там можно выбрать путь.\n\n## Риски\n\nНизкие в пустой папке; в уже существующем дереве может быть неожиданно."
+    }
+  ]
+}

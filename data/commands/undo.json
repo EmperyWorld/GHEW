@@ -1,0 +1,99 @@
+{
+  "commands": [
+    {
+      "id": "reset_mixed",
+      "group": "undo",
+      "title": "Reset --mixed",
+      "synopsis": "git reset <rev>",
+      "danger": "mutates",
+      "preview": "reset",
+      "git": ["reset"],
+      "params": [
+        {
+          "name": "rev",
+          "label": "Куда сдвинуть HEAD",
+          "type": "string",
+          "flag": "",
+          "default": "HEAD~1"
+        }
+      ],
+      "explanation": "## Что делает\n\nДвигает HEAD и сбрасывает индекс; рабочее дерево сохраняет изменения как unstaged.\n\n## Когда использовать\n\n«Отменить коммит, но оставить правки»."
+    },
+    {
+      "id": "reset_soft",
+      "group": "undo",
+      "title": "Reset --soft",
+      "synopsis": "git reset --soft <rev>",
+      "danger": "mutates",
+      "preview": "reset",
+      "git": ["reset", "--soft"],
+      "params": [
+        {
+          "name": "rev",
+          "label": "Куда сдвинуть HEAD",
+          "type": "string",
+          "flag": "",
+          "default": "HEAD~1"
+        }
+      ],
+      "explanation": "## Что делает\n\nДвигает только HEAD; индекс и рабочее дерево как были (удобно пересобрать коммит)."
+    },
+    {
+      "id": "reset_hard",
+      "group": "undo",
+      "title": "Reset --hard",
+      "synopsis": "git reset --hard <rev>",
+      "danger": "destructive",
+      "preview": "reset",
+      "git": ["reset", "--hard"],
+      "params": [
+        {
+          "name": "rev",
+          "label": "Куда сдвинуть всё",
+          "type": "string",
+          "flag": "",
+          "default": "HEAD"
+        }
+      ],
+      "explanation": "## Что делает\n\nПриводит HEAD, индекс и рабочее дерево к указанной ревизии.\n\n## Риски\n\n**Уничтожает незакоммиченные изменения.** Одна из самых опасных команд."
+    },
+    {
+      "id": "revert",
+      "group": "undo",
+      "title": "Revert коммита",
+      "synopsis": "git revert <commit>",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["revert", "--no-edit"],
+      "params": [
+        {
+          "name": "commit",
+          "label": "Коммит",
+          "type": "string",
+          "flag": "",
+          "default": "HEAD"
+        }
+      ],
+      "explanation": "## Что делает\n\nСоздаёт новый коммит, отменяющий изменения указанного — безопасный способ «отката» на shared-ветках.\n\n## Риски\n\nКонфликты; история не переписывается (это плюс для main)."
+    },
+    {
+      "id": "reflog",
+      "group": "undo",
+      "title": "Reflog",
+      "synopsis": "git reflog -n <n>",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["reflog"],
+      "params": [
+        {
+          "name": "maxCount",
+          "label": "Число записей",
+          "type": "string",
+          "flag": "-n",
+          "default": "30"
+        }
+      ],
+      "explanation": "## Что делает\n\nЖурнал движений HEAD — главный инструмент спасения после reset/rebase.\n\n## Риски\n\nНет (только чтение)."
+    }
+  ]
+}

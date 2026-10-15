@@ -1,0 +1,72 @@
+{
+  "commands": [
+    {
+      "id": "add_all",
+      "group": "staging",
+      "title": "Добавить всё в индекс",
+      "synopsis": "git add -A",
+      "danger": "mutates",
+      "preview": "add",
+      "git": ["add", "-A"],
+      "params": [],
+      "explanation": "## Что делает\n\nСтавит в индекс все изменения (правки, удаления, новые файлы), кроме игнорируемых.\n\n## Риски\n\nМожно случайно добавить секреты или мусор — проверьте status.\n\n## Связанные\n\n`restore --staged`, `commit`"
+    },
+    {
+      "id": "add_path",
+      "group": "staging",
+      "title": "Добавить путь",
+      "synopsis": "git add <path>",
+      "danger": "mutates",
+      "preview": "add",
+      "git": ["add"],
+      "params": [
+        {
+          "name": "path",
+          "label": "Путь (файл или каталог)",
+          "type": "path",
+          "flag": "",
+          "default": "."
+        }
+      ],
+      "explanation": "## Что делает\n\nДобавляет указанный путь в индекс.\n\n## Когда использовать\n\nДля точечной подготовки коммита."
+    },
+    {
+      "id": "restore_staged",
+      "group": "staging",
+      "title": "Убрать из индекса",
+      "synopsis": "git restore --staged <path>",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["restore", "--staged"],
+      "params": [
+        {
+          "name": "path",
+          "label": "Путь",
+          "type": "path",
+          "flag": "",
+          "default": "."
+        }
+      ],
+      "explanation": "## Что делает\n\nСнимает файлы с индекса, оставляя изменения в рабочей копии.\n\n## Риски\n\nНизкие: содержимое файлов на диске не откатывается."
+    },
+    {
+      "id": "restore_worktree",
+      "group": "staging",
+      "title": "Откатить файл в рабочей копии",
+      "synopsis": "git restore <path>",
+      "danger": "destructive",
+      "preview": "generic",
+      "git": ["restore"],
+      "params": [
+        {
+          "name": "path",
+          "label": "Путь",
+          "type": "path",
+          "flag": "",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nВозвращает файл в рабочей копии к версии из индекса (или HEAD).\n\n## Риски\n\n**Потеря незакоммиченных правок** в указанном пути."
+    }
+  ]
+}

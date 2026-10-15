@@ -1,0 +1,144 @@
+{
+  "commands": [
+    {
+      "id": "clean_dry",
+      "group": "advanced",
+      "title": "Clean (dry-run)",
+      "synopsis": "git clean -fdn",
+      "danger": "safe",
+      "preview": "clean",
+      "git": ["clean", "-fdn"],
+      "params": [],
+      "explanation": "## Что делает\n\nПоказывает, какие неотслеживаемые файлы удалил бы `clean -fd`.\n\n## Риски\n\nНет (dry-run)."
+    },
+    {
+      "id": "clean_force",
+      "group": "advanced",
+      "title": "Clean -fd",
+      "synopsis": "git clean -fd",
+      "danger": "destructive",
+      "preview": "clean",
+      "git": ["clean", "-fd"],
+      "params": [],
+      "explanation": "## Что делает\n\nУдаляет неотслеживаемые файлы и каталоги.\n\n## Риски\n\n**Безвозвратное удаление** файлов, которых нет в git."
+    },
+    {
+      "id": "worktree_list",
+      "group": "advanced",
+      "title": "Worktree list",
+      "synopsis": "git worktree list",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["worktree", "list"],
+      "params": [],
+      "explanation": "## Что делает\n\nПоказывает связанные рабочие деревья одного репозитория."
+    },
+    {
+      "id": "worktree_remove",
+      "group": "advanced",
+      "title": "Worktree remove",
+      "synopsis": "git worktree remove <path>",
+      "danger": "destructive",
+      "preview": "generic",
+      "git": ["worktree", "remove"],
+      "params": [
+        {
+          "name": "force",
+          "label": "Force (--force)",
+          "type": "bool",
+          "flag": "--force",
+          "default": false
+        },
+        {
+          "name": "path",
+          "label": "Путь worktree",
+          "type": "path",
+          "flag": "",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nУдаляет связанное рабочее дерево. Каталог на диске будет удалён, если чисто.\n\n## Риски\n\n**Потеря незакоммиченных правок** в этом worktree при `--force`."
+    },
+    {
+      "id": "worktree_prune",
+      "group": "advanced",
+      "title": "Worktree prune",
+      "synopsis": "git worktree prune",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["worktree", "prune"],
+      "params": [],
+      "explanation": "## Что делает\n\nЧистит устаревшие записи worktree (когда каталог уже удалён вручную)."
+    },
+    {
+      "id": "submodule_status",
+      "group": "advanced",
+      "title": "Submodule status",
+      "synopsis": "git submodule status",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["submodule", "status"],
+      "params": [],
+      "explanation": "## Что делает\n\nСостояние подмодулей (если есть)."
+    },
+    {
+      "id": "config_list_local",
+      "group": "advanced",
+      "title": "Config (local, list)",
+      "synopsis": "git config --local --list",
+      "danger": "safe",
+      "preview": "generic",
+      "git": ["config", "--local", "--list"],
+      "params": [],
+      "explanation": "## Что делает\n\nЧитает локальную конфигурацию репозитория (без записи).\n\n## Риски\n\nНет."
+    },
+    {
+      "id": "config_set_user",
+      "group": "advanced",
+      "title": "Задать user.name и user.email",
+      "synopsis": "git config --local user.name / user.email",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["config", "--local"],
+      "params": [
+        {
+          "name": "name",
+          "label": "Имя автора",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        },
+        {
+          "name": "email",
+          "label": "Email автора",
+          "type": "string",
+          "flag": "",
+          "default": ""
+        }
+      ],
+      "explanation": "## Что делает\n\nПишет локальные `user.name` и `user.email` для коммитов в этом репозитории (не трогает глобальный ~/.gitconfig).\n\n## Когда использовать\n\nПосле `git init`, если коммит ругается на отсутствие identity.\n\n## Риски\n\nНизкие: меняется только локальная конфигурация репозитория."
+    },
+    {
+      "id": "bisect_start",
+      "group": "advanced",
+      "title": "Bisect start",
+      "synopsis": "git bisect start",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["bisect", "start"],
+      "params": [],
+      "explanation": "## Что делает\n\nНачинает бинарный поиск плохого коммита. Дальше обычно `bisect bad` / `bisect good`.\n\n## Риски\n\nПереключает HEAD между коммитами; завершайте `bisect reset`."
+    },
+    {
+      "id": "bisect_reset",
+      "group": "advanced",
+      "title": "Bisect reset",
+      "synopsis": "git bisect reset",
+      "danger": "mutates",
+      "preview": "generic",
+      "git": ["bisect", "reset"],
+      "params": [],
+      "explanation": "## Что делает\n\nВыходит из режима bisect и возвращает исходную ветку."
+    }
+  ]
+}
